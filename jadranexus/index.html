@@ -1,0 +1,1290 @@
+<!DOCTYPE html>
+<html lang="bs">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jadranexus – Od Istoka do Juga</title>
+
+  <!-- SEO meta tagovi -->
+  <meta name="description" content="Jadranexus – specijalizovana agencija za međunarodni transport tereta iz Kine i cijelog svijeta na Balkan. Brodski, vazdušni i željeznički prijevoz." />
+  <meta name="keywords" content="transport iz Kine, međunarodni transport, logistika, Balkan, brodski prijevoz, vazdušni prijevoz, željeznički prijevoz, uvoz, izvoz" />
+  <meta name="robots" content="index, follow" />
+
+  <!-- Open Graph tagovi -->
+  <meta property="og:title" content="Jadranexus – Od Istoka do Juga" />
+  <meta property="og:description" content="Specijalizovana agencija za međunarodni transport tereta. Brodski, vazdušni i željeznički prijevoz iz Kine i cijelog svijeta na Balkan." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://jadranexus.com" />
+  <meta property="og:image" content="https://jadranexus.com/logo.png" />
+  <meta property="og:locale" content="bs_BA" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Barlow:wght@300;400;500;600&family=Barlow+Condensed:wght@400;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:    #001a4a;
+      --navy2:   #00235f;
+      --red:     #cc1111;
+      --red-lt:  #e83333;
+      --cream:   #e8edf8;
+      --muted:   #7a8db8;
+      --white:   #ffffff;
+      --section-pad: clamp(80px, 10vw, 140px);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Barlow', sans-serif;
+      background: var(--navy);
+      color: var(--cream);
+      overflow-x: hidden;
+    }
+
+    /* ── SCROLLBAR ── */
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--navy); }
+    ::-webkit-scrollbar-thumb { background: var(--red); border-radius: 2px; }
+
+    /* ═══════════════════════════════════════
+       HEADER
+    ═══════════════════════════════════════ */
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 48px;
+      transition: background 0.4s, backdrop-filter 0.4s, border-color 0.4s;
+      border-bottom: 1px solid transparent;
+    }
+
+    header.scrolled {
+      background: rgba(8, 16, 31, 0.88);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom-color: rgba(196, 151, 58, 0.18);
+    }
+
+    .logo-wrap {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+
+    .logo-icon {
+      width: 60px;
+      height: 60px;
+      object-fit: contain;
+      flex-shrink: 0;
+    }
+
+    .logo-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      color: var(--cream);
+    }
+
+    .logo-text span { color: var(--red); }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      position: relative;
+    }
+
+    .btn-upit {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--white);
+      background: var(--red);
+      border: none;
+      padding: 10px 22px;
+      cursor: pointer;
+      transition: background 0.25s, transform 0.2s;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .btn-upit:hover { background: var(--red-lt); transform: translateY(-1px); }
+
+    .btn-menu {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--cream);
+      background: transparent;
+      border: 1px solid rgba(204,17,17,0.4);
+      padding: 9px 16px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: border-color 0.25s, color 0.25s;
+      user-select: none;
+    }
+
+    .btn-menu:hover { border-color: var(--red); color: var(--red); }
+
+    .btn-menu .chevron {
+      width: 10px;
+      height: 6px;
+      transition: transform 0.3s;
+    }
+
+    .btn-menu.open .chevron { transform: rotate(180deg); }
+
+    .dropdown {
+      position: absolute;
+      top: calc(100% + 10px);
+      right: 0;
+      background: var(--navy2);
+      border: 1px solid rgba(204,17,17,0.25);
+      min-width: 210px;
+      padding: 8px 0;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(-8px);
+      transition: opacity 0.25s, transform 0.25s;
+    }
+
+    .dropdown.open {
+      opacity: 1;
+      pointer-events: all;
+      transform: translateY(0);
+    }
+
+    .dropdown a {
+      display: block;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--cream);
+      text-decoration: none;
+      padding: 13px 24px;
+      border-left: 2px solid transparent;
+      transition: color 0.2s, border-color 0.2s, background 0.2s;
+    }
+
+    .dropdown a:hover {
+      color: var(--red);
+      border-left-color: var(--red);
+      background: rgba(204,17,17,0.06);
+    }
+
+    /* ═══════════════════════════════════════
+       HERO
+    ═══════════════════════════════════════ */
+    #hero {
+      position: relative;
+      height: 100svh;
+      min-height: 600px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    /* Grid background */
+    #hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(204,17,17,0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(204,17,17,0.06) 1px, transparent 1px);
+      background-size: 60px 60px;
+      animation: gridDrift 30s linear infinite;
+    }
+
+    @keyframes gridDrift {
+      0%   { background-position: 0 0; }
+      100% { background-position: 60px 60px; }
+    }
+
+    /* Radial glow */
+    #hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 70% 60% at 50% 50%, rgba(204,17,17,0.08) 0%, transparent 70%),
+                  radial-gradient(ellipse 100% 50% at 50% 0%, rgba(8,16,31,0.6) 0%, transparent 60%),
+                  radial-gradient(ellipse 100% 50% at 50% 100%, rgba(8,16,31,0.8) 0%, transparent 60%);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 28px;
+      animation: heroReveal 1.2s ease both;
+    }
+
+    @keyframes heroReveal {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero-logo {
+      width: min(640px, 88vw);
+      height: auto;
+      margin-bottom: 0;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-slogan {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: clamp(16px, 2.5vw, 24px);
+      font-weight: 300;
+      letter-spacing: 0.2em;
+      color: rgba(232, 237, 248, 0.6);
+      text-transform: uppercase;
+    }
+
+    /* ── AVION ── */
+    .hero-plane {
+      position: absolute;
+      left: -15%;
+      top: 30%;
+      width: 300px;
+      opacity: 0.14;
+      z-index: 1;
+      pointer-events: none;
+      animation: planeFly 15s linear infinite -4s;
+      filter: drop-shadow(0 0 8px rgba(255,255,255,0.2));
+    }
+
+    @keyframes planeFly {
+      0%   { transform: translateX(-20vw); }
+      100% { transform: translateX(115vw); }
+    }
+
+    /* ── BROD ── */
+    .hero-ship-wrap {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 280px;
+      z-index: 1;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .hero-ship {
+      position: absolute;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: clamp(500px, 70vw, 900px);
+      opacity: 0.18;
+      animation: shipFloat 8s ease-in-out infinite;
+      transform-origin: center bottom;
+    }
+
+    @keyframes shipFloat {
+      0%   { transform: translateX(-50%) translateY(0px) rotate(0deg); }
+      25%  { transform: translateX(-50%) translateY(-6px) rotate(0.4deg); }
+      50%  { transform: translateX(-50%) translateY(-2px) rotate(-0.3deg); }
+      75%  { transform: translateX(-50%) translateY(-8px) rotate(0.5deg); }
+      100% { transform: translateX(-50%) translateY(0px) rotate(0deg); }
+    }
+
+    .wave-strip {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 100px;
+      overflow: hidden;
+    }
+
+    .wave-svg {
+      position: absolute;
+      left: -50%;
+      bottom: 0;
+      width: 200%;
+      animation: waveDrift 12s linear infinite;
+      opacity: 0.12;
+    }
+
+    .wave-svg.wave2 {
+      animation: waveDrift 18s linear infinite reverse;
+      opacity: 0.06;
+    }
+
+    @keyframes waveDrift {
+      from { transform: translateX(25%); }
+      to   { transform: translateX(-25%); }
+    }
+
+    /* ═══════════════════════════════════════
+       SECTION BASE
+    ═══════════════════════════════════════ */
+    section {
+      padding: var(--section-pad) clamp(24px, 8vw, 120px);
+      scroll-margin-top: 100px;
+    }
+
+    .section-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .section-label::before {
+      content: '';
+      display: block;
+      width: 30px;
+      height: 1px;
+      background: var(--red);
+    }
+
+    h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(34px, 5vw, 60px);
+      font-weight: 300;
+      line-height: 1.1;
+      color: var(--cream);
+      margin-bottom: 40px;
+    }
+
+    p {
+      font-size: 16px;
+      font-weight: 300;
+      line-height: 1.85;
+      color: var(--muted);
+    }
+
+    /* ═══════════════════════════════════════
+       O NAMA
+    ═══════════════════════════════════════ */
+    #o-nama {
+      background: var(--navy2);
+      border-top: 1px solid rgba(204,17,17,0.12);
+      border-bottom: 1px solid rgba(204,17,17,0.12);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .o-nama-bridge {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      opacity: 0.13;
+    }
+
+    .o-nama-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      max-width: 820px;
+    }
+
+    .o-nama-left h2 { margin-bottom: 28px; }
+
+    .o-nama-left p { max-width: 680px; }
+
+    .o-nama-stats {
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+      padding-top: 48px;
+    }
+
+    .stat-item {
+      border-left: 2px solid rgba(204,17,17,0.25);
+      padding-left: 24px;
+    }
+
+    .stat-number {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 52px;
+      font-weight: 300;
+      color: var(--red);
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-size: 13px;
+      font-weight: 400;
+      letter-spacing: 0.06em;
+      color: var(--muted);
+      margin-top: 6px;
+    }
+
+    /* ═══════════════════════════════════════
+       NAŠE USLUGE
+    ═══════════════════════════════════════ */
+    #nase-usluge { background: var(--navy); }
+
+    .usluge-intro p { max-width: 620px; }
+
+    .usluge-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      margin-top: 60px;
+    }
+
+    .usluga-card {
+      background: var(--navy2);
+      padding: 40px 32px;
+      border-top: 2px solid transparent;
+      transition: border-color 0.3s, background 0.3s;
+      cursor: default;
+    }
+
+    .usluga-card:hover {
+      border-top-color: var(--red);
+      background: rgba(15,29,52,0.9);
+    }
+
+    .card-icon {
+      width: 44px;
+      height: 44px;
+      margin-bottom: 24px;
+      opacity: 0.8;
+    }
+
+    .card-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 20px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--cream);
+      margin-bottom: 14px;
+    }
+
+    .card-text {
+      font-size: 14px;
+      line-height: 1.75;
+      color: var(--muted);
+      max-width: none;
+    }
+
+    /* ═══════════════════════════════════════
+       KONTAKTIRAJTE NAS
+    ═══════════════════════════════════════ */
+    #kontakt {
+      background: var(--navy2);
+      border-top: 1px solid rgba(204,17,17,0.12);
+    }
+
+    .kontakt-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .kontakt-info h2 { margin-bottom: 16px; }
+
+    .kontakt-details {
+      margin-top: 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+
+    .kontakt-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 18px;
+    }
+
+    .kontakt-icon-wrap {
+      width: 40px;
+      height: 40px;
+      border: 1px solid rgba(204,17,17,0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .kontakt-icon-wrap svg { width: 18px; height: 18px; color: var(--red); }
+
+    .kontakt-item-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 4px;
+    }
+
+    .kontakt-item-value {
+      font-size: 15px;
+      font-weight: 300;
+      color: var(--cream);
+      line-height: 1.5;
+    }
+
+    /* ── Forma ── */
+    .kontakt-form {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+
+    .form-group label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .form-group label .required-mark {
+      color: var(--red);
+      margin-left: 2px;
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(204,17,17,0.2);
+      color: var(--cream);
+      font-family: 'Barlow', sans-serif;
+      font-size: 14px;
+      font-weight: 300;
+      padding: 13px 16px;
+      outline: none;
+      transition: border-color 0.25s, background 0.25s;
+      resize: none;
+      appearance: none;
+      -webkit-appearance: none;
+      width: 100%;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      border-color: var(--red);
+      background: rgba(204,17,17,0.05);
+    }
+
+    .form-group input.error,
+    .form-group textarea.error {
+      border-color: var(--red-lt);
+      background: rgba(232,51,51,0.06);
+    }
+
+    .form-group .error-msg {
+      font-size: 11px;
+      color: var(--red-lt);
+      letter-spacing: 0.04em;
+      display: none;
+    }
+
+    .form-group.has-error .error-msg { display: block; }
+
+    .form-group input::placeholder,
+    .form-group textarea::placeholder { color: rgba(138,153,176,0.5); }
+
+    .form-group textarea { min-height: 130px; }
+
+    .btn-submit {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--white);
+      background: var(--red);
+      border: none;
+      padding: 16px 36px;
+      cursor: pointer;
+      align-self: flex-start;
+      transition: background 0.25s, transform 0.2s;
+      margin-top: 8px;
+    }
+
+    .btn-submit:hover { background: var(--red-lt); transform: translateY(-2px); }
+    .btn-submit:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+
+    /* Poruka uspjeha */
+    .form-success {
+      display: none;
+      padding: 24px 28px;
+      background: rgba(204,17,17,0.08);
+      border: 1px solid rgba(204,17,17,0.3);
+      border-left: 3px solid var(--red);
+    }
+
+    .form-success.visible { display: block; }
+
+    .form-success p {
+      font-size: 15px;
+      color: var(--cream);
+      max-width: none;
+    }
+
+    .form-success strong {
+      display: block;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 8px;
+    }
+
+    /* ═══════════════════════════════════════
+       FOOTER
+    ═══════════════════════════════════════ */
+    footer {
+      background: var(--navy);
+      border-top: 1px solid rgba(204,17,17,0.15);
+      padding: 40px clamp(24px, 8vw, 120px);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 24px;
+    }
+
+    .footer-copy {
+      font-size: 12px;
+      font-weight: 300;
+      color: var(--muted);
+      letter-spacing: 0.04em;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+    }
+
+    .social-link {
+      width: 38px;
+      height: 38px;
+      border: 1px solid rgba(204,17,17,0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      transition: color 0.25s, border-color 0.25s, background 0.25s;
+      text-decoration: none;
+    }
+
+    .social-link:hover {
+      color: var(--red);
+      border-color: var(--red);
+      background: rgba(204,17,17,0.06);
+    }
+
+    .social-link svg { width: 18px; height: 18px; }
+
+    /* ═══════════════════════════════════════
+       RESPONSIVE
+    ═══════════════════════════════════════ */
+    @media (max-width: 900px) {
+      header { padding: 18px 24px; }
+      .o-nama-grid, .kontakt-grid { grid-template-columns: 1fr; gap: 48px; }
+      .usluge-cards { grid-template-columns: 1fr; }
+      .o-nama-stats { flex-direction: row; flex-wrap: wrap; padding-top: 0; }
+      .form-row { grid-template-columns: 1fr; }
+      footer { flex-direction: column; align-items: flex-start; }
+    }
+
+    @media (max-width: 600px) {
+      .btn-menu span.menu-label { display: none; }
+      .logo-text { font-size: 18px; }
+    }
+
+    /* ═══════════════════════════════════════
+       PREFERS REDUCED MOTION
+    ═══════════════════════════════════════ */
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+      html { scroll-behavior: auto; }
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- ═══ HEADER ═══ -->
+  <header id="site-header">
+    <a href="#hero" class="logo-wrap">
+      <img src="logo.png" alt="Jadranexus logo" class="logo-icon" />
+    </a>
+
+    <div class="header-actions">
+      <a href="#kontakt" class="btn-upit">Upit</a>
+
+      <button class="btn-menu" id="menuBtn" aria-expanded="false" aria-controls="navDropdown">
+        <span class="menu-label">Navigacija</span>
+        <svg class="chevron" viewBox="0 0 10 6" fill="none" aria-hidden="true">
+          <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </button>
+
+      <div class="dropdown" id="navDropdown" role="menu">
+        <a href="#o-nama"      role="menuitem">O nama</a>
+        <a href="#nase-usluge" role="menuitem">Naše usluge</a>
+        <a href="#kontakt"     role="menuitem">Kontaktirajte nas</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ═══ HERO ═══ -->
+  <section id="hero">
+
+    <!-- Avion koji prelijeće -->
+    <svg class="hero-plane" viewBox="0 0 220 80" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <!-- Fuselage -->
+      <ellipse cx="110" cy="38" rx="90" ry="12" fill="white" opacity="0.9"/>
+      <!-- Nos -->
+      <path d="M196 38 Q218 38 220 40 Q218 42 196 42 Z" fill="white" opacity="0.8"/>
+      <!-- Rep -->
+      <path d="M22 38 Q10 38 6 34 Q10 30 22 32 Z" fill="white" opacity="0.7"/>
+      <!-- Krila -->
+      <path d="M100 38 L130 10 L145 15 L120 40 Z" fill="white" opacity="0.75"/>
+      <path d="M100 38 L130 66 L145 61 L120 36 Z" fill="white" opacity="0.75"/>
+      <!-- Vertikalni stabilizator -->
+      <path d="M30 38 L30 20 L45 30 L45 38 Z" fill="white" opacity="0.6"/>
+      <!-- Horizontalni stabilizatori -->
+      <path d="M35 38 L55 26 L62 30 L45 38 Z" fill="white" opacity="0.6"/>
+      <path d="M35 38 L55 50 L62 46 L45 38 Z" fill="white" opacity="0.6"/>
+      <!-- Motori -->
+      <ellipse cx="125" cy="18" rx="12" ry="5" fill="white" opacity="0.5"/>
+      <ellipse cx="125" cy="58" rx="12" ry="5" fill="white" opacity="0.5"/>
+      <!-- Prozori -->
+      <circle cx="155" cy="36" r="2.5" fill="white" opacity="0.3"/>
+      <circle cx="167" cy="36" r="2.5" fill="white" opacity="0.3"/>
+      <circle cx="179" cy="36" r="2.5" fill="white" opacity="0.3"/>
+      <circle cx="191" cy="36" r="2.5" fill="white" opacity="0.3"/>
+    </svg>
+
+    <!-- Brod pri dnu + valovi -->
+    <div class="hero-ship-wrap">
+      <svg class="hero-ship" viewBox="0 0 900 220" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <!-- Trup -->
+        <path d="M80 160 L820 160 L860 190 L40 190 Z" fill="#cc1111"/>
+        <path d="M40 190 L860 190 L840 210 L60 210 Z" fill="#a00d0d"/>
+        <!-- Vodena linija -->
+        <rect x="40" y="188" width="820" height="5" fill="#cc3333"/>
+        <!-- Nadgrađe -->
+        <rect x="280" y="90" width="380" height="70" fill="#e8edf8"/>
+        <rect x="300" y="60" width="260" height="35" fill="#d0d8f0"/>
+        <rect x="330" y="38" width="180" height="28" fill="#c0caec"/>
+        <!-- Prozori mosta, red 1 -->
+        <rect x="310" y="95" width="22" height="14" rx="2" fill="#001a4a" opacity="0.6"/>
+        <rect x="342" y="95" width="22" height="14" rx="2" fill="#001a4a" opacity="0.6"/>
+        <rect x="374" y="95" width="22" height="14" rx="2" fill="#001a4a" opacity="0.6"/>
+        <rect x="406" y="95" width="22" height="14" rx="2" fill="#001a4a" opacity="0.6"/>
+        <rect x="438" y="95" width="22" height="14" rx="2" fill="#001a4a" opacity="0.6"/>
+        <rect x="470" y="95" width="22" height="14" rx="2" fill="#001a4a" opacity="0.6"/>
+        <rect x="502" y="95" width="22" height="14" rx="2" fill="#001a4a" opacity="0.6"/>
+        <rect x="534" y="95" width="22" height="14" rx="2" fill="#001a4a" opacity="0.6"/>
+        <rect x="566" y="95" width="22" height="14" rx="2" fill="#001a4a" opacity="0.6"/>
+        <rect x="598" y="95" width="22" height="14" rx="2" fill="#001a4a" opacity="0.6"/>
+        <!-- Prozori mosta, red 2 -->
+        <rect x="318" y="68" width="18" height="11" rx="1" fill="#001a4a" opacity="0.5"/>
+        <rect x="346" y="68" width="18" height="11" rx="1" fill="#001a4a" opacity="0.5"/>
+        <rect x="374" y="68" width="18" height="11" rx="1" fill="#001a4a" opacity="0.5"/>
+        <rect x="402" y="68" width="18" height="11" rx="1" fill="#001a4a" opacity="0.5"/>
+        <rect x="430" y="68" width="18" height="11" rx="1" fill="#001a4a" opacity="0.5"/>
+        <rect x="458" y="68" width="18" height="11" rx="1" fill="#001a4a" opacity="0.5"/>
+        <rect x="486" y="68" width="18" height="11" rx="1" fill="#001a4a" opacity="0.5"/>
+        <rect x="514" y="68" width="18" height="11" rx="1" fill="#001a4a" opacity="0.5"/>
+        <rect x="542" y="68" width="18" height="11" rx="1" fill="#001a4a" opacity="0.5"/>
+        <!-- Dimnjak -->
+        <rect x="420" y="12" width="32" height="30" rx="2" fill="#cc1111"/>
+        <rect x="424" y="8" width="24" height="10" rx="2" fill="#a00d0d"/>
+        <!-- Dizalica lijevo -->
+        <rect x="150" y="140" width="8" height="25" fill="#c0caec"/>
+        <line x1="154" y1="140" x2="230" y2="95" stroke="#c0caec" stroke-width="3"/>
+        <line x1="230" y1="95" x2="230" y2="140" stroke="#c0caec" stroke-width="2" stroke-dasharray="4,3"/>
+        <!-- Dizalica desno -->
+        <rect x="730" y="140" width="8" height="25" fill="#c0caec"/>
+        <line x1="734" y1="140" x2="660" y2="95" stroke="#c0caec" stroke-width="3"/>
+        <line x1="660" y1="95" x2="660" y2="140" stroke="#c0caec" stroke-width="2" stroke-dasharray="4,3"/>
+        <!-- Kontejneri lijevo -->
+        <rect x="110" y="120" width="55" height="22" rx="2" fill="#cc1111" stroke="#e8edf8" stroke-width="1"/>
+        <rect x="110" y="98"  width="55" height="22" rx="2" fill="#001a4a" stroke="#e8edf8" stroke-width="1"/>
+        <rect x="110" y="76"  width="55" height="22" rx="2" fill="#cc1111" stroke="#e8edf8" stroke-width="1"/>
+        <!-- Kontejneri desno -->
+        <rect x="700" y="120" width="55" height="22" rx="2" fill="#001a4a" stroke="#e8edf8" stroke-width="1"/>
+        <rect x="700" y="98"  width="55" height="22" rx="2" fill="#cc1111" stroke="#e8edf8" stroke-width="1"/>
+        <rect x="700" y="76"  width="55" height="22" rx="2" fill="#001a4a" stroke="#e8edf8" stroke-width="1"/>
+        <!-- Pramac -->
+        <path d="M80 160 L40 190" stroke="#c0caec" stroke-width="2"/>
+        <!-- Sidreni lanac -->
+        <path d="M110 185 L90 205" stroke="#c0caec" stroke-width="2" stroke-dasharray="3,3"/>
+        <!-- Jarbol -->
+        <line x1="460" y1="10" x2="460" y2="38" stroke="#c0caec" stroke-width="3"/>
+        <line x1="420" y1="20" x2="500" y2="20" stroke="#c0caec" stroke-width="2"/>
+        <!-- Zastava -->
+        <path d="M500 20 L500 10 L524 15 L500 20Z" fill="#cc1111"/>
+      </svg>
+
+      <!-- Valovi -->
+      <div class="wave-strip">
+        <svg class="wave-svg" viewBox="0 0 1440 60" preserveAspectRatio="none" aria-hidden="true">
+          <path d="M0 30 Q90 10 180 30 Q270 50 360 30 Q450 10 540 30 Q630 50 720 30 Q810 10 900 30 Q990 50 1080 30 Q1170 10 1260 30 Q1350 50 1440 30 L1440 60 L0 60Z" fill="#cc1111"/>
+        </svg>
+        <svg class="wave-svg wave2" viewBox="0 0 1440 60" preserveAspectRatio="none" aria-hidden="true">
+          <path d="M0 35 Q120 15 240 35 Q360 55 480 35 Q600 15 720 35 Q840 55 960 35 Q1080 15 1200 35 Q1320 55 1440 35 L1440 60 L0 60Z" fill="#e8edf8"/>
+        </svg>
+      </div>
+    </div>
+
+    <div class="hero-content">
+      <img src="logo.png" alt="Jadranexus" class="hero-logo" />
+      <div class="hero-slogan">Od Istoka do Juga</div>
+    </div>
+
+  </section>
+
+  <!-- ═══ O NAMA ═══ -->
+  <section id="o-nama">
+
+    <!-- Most u pozadini -->
+    <svg class="o-nama-bridge" viewBox="0 0 1440 400" preserveAspectRatio="xMidYMid slice" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+
+      <!-- ── Pylon lijevi ── -->
+      <!-- Glavni stub -->
+      <rect x="418" y="60" width="22" height="270" fill="#cc1111"/>
+      <!-- Noge lijevog pilona (V-shape) -->
+      <polygon points="418,330 395,400 408,400 429,330" fill="#cc1111"/>
+      <polygon points="440,330 463,400 450,400 429,330" fill="#cc1111"/>
+      <!-- Horizontalni pojasevi -->
+      <rect x="402" y="120" width="54" height="12" rx="1" fill="#cc1111"/>
+      <rect x="402" y="180" width="54" height="10" rx="1" fill="#cc1111"/>
+      <rect x="402" y="235" width="54" height="10" rx="1" fill="#cc1111"/>
+      <!-- Kapu -->
+      <rect x="410" y="52" width="38" height="14" rx="2" fill="#cc1111"/>
+      <rect x="416" y="42" width="26" height="14" rx="2" fill="#cc1111"/>
+
+      <!-- ── Pylon desni ── -->
+      <rect x="1000" y="60" width="22" height="270" fill="#cc1111"/>
+      <polygon points="1000,330 977,400 990,400 1011,330" fill="#cc1111"/>
+      <polygon points="1022,330 1045,400 1032,400 1011,330" fill="#cc1111"/>
+      <rect x="984" y="120" width="54" height="12" rx="1" fill="#cc1111"/>
+      <rect x="984" y="180" width="54" height="10" rx="1" fill="#cc1111"/>
+      <rect x="984" y="235" width="54" height="10" rx="1" fill="#cc1111"/>
+      <rect x="992" y="52" width="38" height="14" rx="2" fill="#cc1111"/>
+      <rect x="998" y="42" width="26" height="14" rx="2" fill="#cc1111"/>
+
+      <!-- ── Glavni kablovi (katenary krivulja) ── -->
+      <!-- Lijevi kabel -->
+      <path d="M 0 280
+               C 120 280 300 64  429 64
+               C 600 64 840 200  1011 64
+               C 1140 64 1320 280 1440 280"
+            stroke="#cc1111" stroke-width="5" fill="none" stroke-linecap="round"/>
+      <!-- Desni kabel (malo pomjeren za volumen) -->
+      <path d="M 0 288
+               C 120 288 300 72  429 72
+               C 600 72 840 208  1011 72
+               C 1140 72 1320 288 1440 288"
+            stroke="#cc1111" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.6"/>
+
+      <!-- ── Vješaljke (hanger cables) — lijeva strana mosta ── -->
+      <line x1="120"  y1="275" x2="120"  y2="330" stroke="#cc1111" stroke-width="2"/>
+      <line x1="180"  y1="248" x2="180"  y2="330" stroke="#cc1111" stroke-width="2"/>
+      <line x1="240"  y1="215" x2="240"  y2="330" stroke="#cc1111" stroke-width="2"/>
+      <line x1="300"  y1="176" x2="300"  y2="330" stroke="#cc1111" stroke-width="2"/>
+      <line x1="360"  y1="124" x2="360"  y2="330" stroke="#cc1111" stroke-width="2"/>
+
+      <!-- ── Vješaljke — sredina mosta ── -->
+      <line x1="500"  y1="98"  x2="500"  y2="330" stroke="#cc1111" stroke-width="2"/>
+      <line x1="560"  y1="114" x2="560"  y2="330" stroke="#cc1111" stroke-width="2"/>
+      <line x1="620"  y1="136" x2="620"  y2="330" stroke="#cc1111" stroke-width="2"/>
+      <line x1="680"  y1="163" x2="680"  y2="330" stroke="#cc1111" stroke-width="2"/>
+      <line x1="720"  y1="180" x2="720"  y2="330" stroke="#cc1111" stroke-width="2"/>
+      <line x1="760"  y1="163" x2="760"  y2="330" stroke="#cc1111" stroke-width="2"/>
+      <line x1="820"  y1="136" x2="820"  y2="330" stroke="#cc1111" stroke-width="2"/>
+      <line x1="880"  y1="114" x2="880"  y2="330" stroke="#cc1111" stroke-width="2"/>
+      <line x1="940"  y1="98"  x2="940"  y2="330" stroke="#cc1111" stroke-width="2"/>
+
+      <!-- ── Vješaljke — desna strana mosta ── -->
+      <line x1="1080" y1="124" x2="1080" y2="330" stroke="#cc1111" stroke-width="2"/>
+      <line x1="1140" y1="176" x2="1140" y2="330" stroke="#cc1111" stroke-width="2"/>
+      <line x1="1200" y1="215" x2="1200" y2="330" stroke="#cc1111" stroke-width="2"/>
+      <line x1="1260" y1="248" x2="1260" y2="330" stroke="#cc1111" stroke-width="2"/>
+      <line x1="1320" y1="275" x2="1320" y2="330" stroke="#cc1111" stroke-width="2"/>
+
+      <!-- ── Kolnik (deck) — sa debljinom ── -->
+      <rect x="0"    y="328" width="1440" height="10" rx="0" fill="#cc1111"/>
+      <rect x="0"    y="338" width="1440" height="4"  fill="#cc1111" opacity="0.5"/>
+      <!-- Horizontalna pojačanja kolnika -->
+      <rect x="0"    y="322" width="1440" height="3"  fill="#cc1111" opacity="0.4"/>
+
+      <!-- ── Sidrišta kablova ── -->
+      <rect x="0"   y="268" width="60"  height="20" rx="2" fill="#cc1111"/>
+      <rect x="1380" y="268" width="60" height="20" rx="2" fill="#cc1111"/>
+
+    </svg>
+    <div class="o-nama-grid">
+      <div class="o-nama-left">
+        <div class="section-label">O nama</div>
+        <h2>Most između<br><em>Istoka i Balkana</em></h2>
+        <p>
+          Jadranexus je specijalizovana agencija za međunarodni transport tereta, osnovana od strane tima s više od 10 godina iskustva u uvozu i izvozu robe. Djelujemo kao veza između vaše kompanije i provjerenih transportnih partnera širom svijeta, preuzimajući na sebe svu koordinaciju, komunikaciju i logistiku, dok vi vodite svoje poslovanje.
+        </p>
+        <br />
+        <p>
+          Naš tim čine stručnjaci s Balkana kao i kolege iz Kine koji su više od 15 godina proveli radeći na našem tržištu. Upravo ta kombinacija daje nam prednost koju rijetko ko može ponuditi: razumijemo specifičnosti balkanskog tržišta, a istovremeno imamo ljude u Kini koji poznaju lokalne procese, dobavljače i transportne kapacitete iznutra.
+        </p>
+        <br />
+        <p>
+          Dio tima koji radi u Kini osigurava brzu komunikaciju s partnerima na licu mjesta, što direktno znači kraće rokove i manji prostor za greške.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ NAŠE USLUGE ═══ -->
+  <section id="nase-usluge">
+    <div class="usluge-intro">
+      <div class="section-label">Naše usluge</div>
+      <h2>Transport koji se<br><em>prilagođava vama</em></h2>
+      <p>
+        Nudimo brodski, vazdušni i željeznički prijevoz robe iz i u skoro sve države na svijetu, s posebnim fokusom na transport iz Kine. Za svakog klijenta pronalazimo rješenje koje odgovara roku isporuke i budžetu. Godinama smo gradili odnose s transporterima na različitim rutama, što nam danas daje pristup zavidljivim cijenama kao i ostalim benefitima koje direktno prenosimo na naše klijente.
+      </p>
+    </div>
+
+    <div class="usluge-cards">
+
+      <div class="usluga-card">
+        <!-- Ikona broda -->
+        <svg class="card-icon" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#cc1111" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M7 28 L22 8 L37 28"/>
+          <path d="M4 34 Q11 30 18 34 Q25 38 32 34 Q39 30 42 34"/>
+          <line x1="22" y1="8" x2="22" y2="28"/>
+          <line x1="13" y1="28" x2="31" y2="28"/>
+        </svg>
+        <div class="card-title">Brodski prijevoz</div>
+        <p class="card-text">
+          Pouzdano rješenje za veće količine robe. Sarađujemo s vodećim brodarskim kompanijama te pronalazimo najpovoljniji FCL ili LCL termin koji odgovara vašem rasporedu i budžetu.
+        </p>
+      </div>
+
+      <div class="usluga-card">
+        <!-- Ikona aviona -->
+        <svg class="card-icon" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#cc1111" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M38 14 Q42 18 38 22 L22 22 L10 36 L6 36 L14 22 L4 22 L2 26 L-1 26"/>
+          <path d="M38 14 Q34 10 28 14 L22 22"/>
+          <path d="M27 30 L34 30"/>
+        </svg>
+        <div class="card-title">Vazdušni prijevoz</div>
+        <p class="card-text">
+          Kada je rok isporuke kritičan, vazdušni transport je odgovor. Brzina od vrata do vrata s minimalnom birokracijom — naš tim vodi kompletnu carinsku proceduru.
+        </p>
+      </div>
+
+      <div class="usluga-card">
+        <!-- Ikona voza -->
+        <svg class="card-icon" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#cc1111" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="8" y="10" width="28" height="22" rx="2"/>
+          <line x1="8"  y1="20" x2="36" y2="20"/>
+          <line x1="22" y1="10" x2="22" y2="32"/>
+          <circle cx="13" cy="36" r="3"/>
+          <circle cx="31" cy="36" r="3"/>
+          <line x1="4" y1="36" x2="40" y2="36"/>
+        </svg>
+        <div class="card-title">Željeznički prijevoz</div>
+        <p class="card-text">
+          Zlatna sredina između brzine i troška. Ruta Kina–Europa željeznicom brža je od broda, a povoljnija od aviona — idealno za robu standardnih rokova isporuke.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══ KONTAKTIRAJTE NAS ═══ -->
+  <section id="kontakt">
+    <div class="kontakt-grid">
+
+      <div class="kontakt-info">
+        <div class="section-label">Kontaktirajte nas</div>
+        <h2>Pošaljite nam<br><em>upit već danas</em></h2>
+        <div class="kontakt-details">
+          <div class="kontakt-item">
+            <div class="kontakt-icon-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.65A2 2 0 012 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14h-.08z"/>
+              </svg>
+            </div>
+            <div>
+              <div class="kontakt-item-label">Telefon</div>
+              <div class="kontakt-item-value">
+                <a href="tel:+38761000000" style="color:inherit;text-decoration:none;">+387 61 000 000</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="kontakt-item">
+            <div class="kontakt-icon-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                <polyline points="22,6 12,13 2,6"/>
+              </svg>
+            </div>
+            <div>
+              <div class="kontakt-item-label">Email</div>
+              <div class="kontakt-item-value">
+                <a href="mailto:info@jadranexus.com" style="color:inherit;text-decoration:none;">info@jadranexus.com</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="kontakt-item">
+            <div class="kontakt-icon-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
+                <circle cx="12" cy="10" r="3"/>
+              </svg>
+            </div>
+            <div>
+              <div class="kontakt-item-label">Adresa</div>
+              <div class="kontakt-item-value">Ulica i broj, Grad<br>Bosna i Hercegovina</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Kontakt forma -->
+      <div>
+        <form class="kontakt-form" id="kontaktForma" novalidate>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="ime">Ime i prezime <span class="required-mark" aria-hidden="true">*</span></label>
+              <input type="text" id="ime" name="ime" placeholder="Vaše ime" required autocomplete="name" />
+              <span class="error-msg" role="alert">Unesite vaše ime i prezime.</span>
+            </div>
+            <div class="form-group">
+              <label for="kompanija">Kompanija</label>
+              <input type="text" id="kompanija" name="kompanija" placeholder="Naziv firme" autocomplete="organization" />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="email">Email adresa <span class="required-mark" aria-hidden="true">*</span></label>
+              <input type="email" id="email" name="email" placeholder="vas@email.com" required autocomplete="email" />
+              <span class="error-msg" role="alert">Unesite ispravnu email adresu.</span>
+            </div>
+            <div class="form-group">
+              <label for="telefon">Telefon</label>
+              <input type="tel" id="telefon" name="telefon" placeholder="+387 ..." autocomplete="tel" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="poruka">Poruka / Upit <span class="required-mark" aria-hidden="true">*</span></label>
+            <textarea id="poruka" name="poruka" placeholder="Opišite vaše potrebe, količinu robe, željeni rok isporuke..." required></textarea>
+            <span class="error-msg" role="alert">Molimo opišite vaš upit.</span>
+          </div>
+
+          <button class="btn-submit" type="submit">Pošalji upit</button>
+        </form>
+
+        <div class="form-success" id="formSuccess" role="status" aria-live="polite">
+          <p><strong>Upit je poslan!</strong>Hvala vam. Javit ćemo vam se u najkraćem mogućem roku.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══ FOOTER ═══ -->
+  <footer>
+    <div class="footer-copy">© 2026 Jadranexus. Sva prava zadržana.</div>
+
+    <div class="social-links">
+
+      <!-- Instagram -->
+      <a href="https://www.instagram.com/jadranexus" class="social-link" aria-label="Pratite nas na Instagramu" target="_blank" rel="noopener noreferrer">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+          <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/>
+          <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+        </svg>
+      </a>
+
+      <!-- Facebook -->
+      <a href="https://www.facebook.com/profile.php?id=61590161461927" class="social-link" aria-label="Pratite nas na Facebooku" target="_blank" rel="noopener noreferrer">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/>
+        </svg>
+      </a>
+
+      <!-- WhatsApp -->
+      <a href="https://wa.me/38761000000" class="social-link" aria-label="Kontaktirajte nas putem WhatsAppa" target="_blank" rel="noopener noreferrer">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/>
+        </svg>
+      </a>
+    </div>
+  </footer>
+
+  <!-- ═══ JS ═══ -->
+  <script>
+    // ── Header scroll efekat ──
+    const siteHeader = document.getElementById('site-header');
+    window.addEventListener('scroll', () => {
+      siteHeader.classList.toggle('scrolled', window.scrollY > 40);
+    }, { passive: true });
+
+    // ── Dropdown navigacija ──
+    const menuBtn  = document.getElementById('menuBtn');
+    const dropdown = document.getElementById('navDropdown');
+
+    function openDropdown() {
+      dropdown.classList.add('open');
+      menuBtn.classList.add('open');
+      menuBtn.setAttribute('aria-expanded', 'true');
+    }
+
+    function closeDropdown() {
+      dropdown.classList.remove('open');
+      menuBtn.classList.remove('open');
+      menuBtn.setAttribute('aria-expanded', 'false');
+    }
+
+    menuBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      dropdown.classList.contains('open') ? closeDropdown() : openDropdown();
+    });
+
+    // Zatvaranje klikom izvan
+    document.addEventListener('click', () => closeDropdown());
+
+    // Zatvaranje tipkom Escape
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeDropdown();
+    });
+
+    // Zatvaranje klikom na stavku
+    dropdown.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => closeDropdown());
+    });
+
+    // ── Kontakt forma ──
+    const forma     = document.getElementById('kontaktForma');
+    const successEl = document.getElementById('formSuccess');
+
+    function validateField(input) {
+      const group = input.closest('.form-group');
+      if (!group) return true;
+
+      let valid = true;
+
+      if (input.required && !input.value.trim()) {
+        valid = false;
+      } else if (input.type === 'email' && input.value.trim()) {
+        const emailReg = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailReg.test(input.value.trim())) valid = false;
+      }
+
+      group.classList.toggle('has-error', !valid);
+      input.classList.toggle('error', !valid);
+      return valid;
+    }
+
+    // Validacija u realnom vremenu (tek nakon prvog blur-a)
+    forma.querySelectorAll('input, textarea').forEach(field => {
+      field.addEventListener('blur', () => validateField(field));
+      field.addEventListener('input', () => {
+        if (field.classList.contains('error')) validateField(field);
+      });
+    });
+
+    forma.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const fields = forma.querySelectorAll('input[required], textarea[required]');
+      let allValid = true;
+
+      fields.forEach(field => {
+        if (!validateField(field)) allValid = false;
+      });
+
+      if (!allValid) return;
+
+      const ime       = document.getElementById('ime').value.trim();
+      const kompanija = document.getElementById('kompanija').value.trim();
+      const email     = document.getElementById('email').value.trim();
+      const telefon   = document.getElementById('telefon').value.trim();
+      const poruka    = document.getElementById('poruka').value.trim();
+
+      const subject = encodeURIComponent('Upit – ' + ime + (kompanija ? ' / ' + kompanija : ''));
+      const body = encodeURIComponent(
+        'Ime i prezime: ' + ime + '\n' +
+        (kompanija ? 'Kompanija: ' + kompanija + '\n' : '') +
+        'Email: ' + email + '\n' +
+        (telefon ? 'Telefon: ' + telefon + '\n' : '') +
+        '\nPoruka:\n' + poruka
+      );
+
+      window.location.href = 'mailto:info@jadranexus.com?subject=' + subject + '&body=' + body;
+
+      // Prikaz poruke uspjeha
+      forma.style.display = 'none';
+      successEl.classList.add('visible');
+      successEl.focus();
+    });
+  </script>
+</body>
+</html>
