@@ -379,19 +379,24 @@
     /* ── AVION ── */
     .hero-plane {
       position: absolute;
-      left: 0%;
+      left: 0;
       top: 30%;
       width: 360px;
-      opacity: 0.15;
-      z-index: 1;
+      opacity: 0.22;
+      z-index: 2;
       pointer-events: none;
-      animation: planeFly 15s linear infinite 0s;
-      filter: drop-shadow(0 0 8px rgba(255,255,255,0.2));
+      filter: drop-shadow(0 0 10px rgba(255,255,255,0.3));
+      will-change: transform;
     }
 
-    @keyframes planeFly {
-      0%   { transform: translateX(-20vw); }
-      100% { transform: translateX(115vw); }
+    /* Canvas za kondenzacioni trag */
+    #contrailCanvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
     }
 
     /* ── BROD ── */
@@ -906,6 +911,9 @@
 
   <!-- ═══ HERO ═══ -->
   <section id="hero">
+
+    <!-- Canvas za kondenzacioni trag -->
+    <canvas id="contrailCanvas" aria-hidden="true"></canvas>
 
     <!-- Avion -->
     <svg class="hero-plane" viewBox="0 0 600 200" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -1487,6 +1495,103 @@ linecap="round" opacity="0.85"/>
     dropdown.querySelectorAll('a').forEach(link => {
       link.addEventListener('click', () => closeDropdown());
     });
+  </script>
+
+  <!-- ═══ KONDENZACIONI TRAG ═══ -->
+  <script>
+  (function () {
+    const hero   = document.getElementById('hero');
+    const plane  = document.querySelector('.hero-plane');
+    const canvas = document.getElementById('contrailCanvas');
+    const ctx    = canvas.getContext('2d');
+
+    const PLANE_W  = 360;
+    const VB_W     = 600;
+    const VB_H     = 200;
+    const PLANE_H  = PLANE_W * VB_H / VB_W;  // 120 px
+    const DURATION = 15;                       // sekunde po prolazu
+
+    // Izlaz pare iz repa aviona (sredina trupa)
+    const TAIL_X = 50  * (PLANE_W / VB_W);   // ≈ 30 px od lijevog ruba SVG
+    const ENG_Y  = 96  * (PLANE_H / VB_H);   // ≈ 58 px – centar trupa
+
+    const particles = [];
+
+    function resize() {
+      canvas.width  = hero.offsetWidth;
+      canvas.height = hero.offsetHeight;
+    }
+
+    function planeX(t) {
+      const progress = (t % DURATION) / DURATION;
+      const startX = -(PLANE_W + 60);
+      const endX   = canvas.width + 60;
+      return startX + progress * (endX - startX);
+    }
+
+    function spawnParticle(x, y) {
+      particles.push({
+        x,
+        y,
+        vx: -(1.5 + Math.random() * 1.5),          // leti lijevo (iza aviona)
+        vy: (Math.random() - 0.5) * 0.6,            // blagi vertikalni šum
+        radius: 5 + Math.random() * 5,
+        life: 1.0,
+        decay: 0.018 + Math.random() * 0.014,       // koliko brzo nestaje
+        spread: 0.04 + Math.random() * 0.04,        // koliko se širi
+      });
+    }
+
+    let t0 = null;
+    function loop(ts) {
+      if (!t0) t0 = ts;
+      const t  = (ts - t0) / 1000;
+      const px = planeX(t);
+
+      plane.style.transform = `translateX(${px}px)`;
+      plane.style.opacity = '0.22';
+
+      const topY = 0.30 * canvas.height;
+      const isVisible = px > -PLANE_W && px < canvas.width + 20;
+
+      // Stvori nove čestice iz centra repa
+      if (isVisible) {
+        const tx = px + TAIL_X;
+        for (let i = 0; i < 4; i++) spawnParticle(tx, topY + ENG_Y);
+      }
+
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      for (let i = particles.length - 1; i >= 0; i--) {
+        const p = particles[i];
+
+        p.x      += p.vx;
+        p.y      += p.vy;
+        p.radius += p.spread;
+        p.life   -= p.decay;
+
+        if (p.life <= 0) { particles.splice(i, 1); continue; }
+
+        // Radijalni gradijent – mekana para/dim
+        const grad = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.radius);
+        const a = p.life * 0.28;
+        grad.addColorStop(0,   `rgba(230,238,255,${a.toFixed(3)})`);
+        grad.addColorStop(0.5, `rgba(210,222,255,${(a * 0.5).toFixed(3)})`);
+        grad.addColorStop(1,   `rgba(200,215,255,0)`);
+
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+        ctx.fillStyle = grad;
+        ctx.fill();
+      }
+
+      requestAnimationFrame(loop);
+    }
+
+    resize();
+    window.addEventListener('resize', () => { resize(); particles.length = 0; });
+    requestAnimationFrame(loop);
+  })();
   </script>
 
   <!-- ═══ FORMSPREE ═══ -->
