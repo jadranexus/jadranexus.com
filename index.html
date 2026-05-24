@@ -379,13 +379,13 @@
     /* ── AVION ── */
     .hero-plane {
       position: absolute;
-      left: -15%;
+      left: 0%;
       top: 30%;
-      width: 300px;
-      opacity: 0.14;
+      width: 360px;
+      opacity: 0.15;
       z-index: 1;
       pointer-events: none;
-      animation: planeFly 15s linear infinite -4s;
+      animation: planeFly 15s linear infinite 0s;
       filter: drop-shadow(0 0 8px rgba(255,255,255,0.2));
     }
 
@@ -841,13 +841,20 @@
     /* ═══════════════════════════════════════
        RESPONSIVE
     ═══════════════════════════════════════ */
+    @media (max-width: 1100px) {
+      .usluge-cards { grid-template-columns: repeat(2, 1fr); }
+    }
+
     @media (max-width: 900px) {
       header { padding: 18px 24px; }
       .o-nama-grid, .kontakt-grid { grid-template-columns: 1fr; gap: 48px; }
-      .usluge-cards { grid-template-columns: 1fr; }
       .o-nama-stats { flex-direction: row; flex-wrap: wrap; padding-top: 0; }
       .form-row { grid-template-columns: 1fr; }
       footer { flex-direction: column; align-items: flex-start; }
+    }
+
+    @media (max-width: 600px) {
+      .usluge-cards { grid-template-columns: 1fr; }
     }
 
     @media (max-width: 600px) {
@@ -900,30 +907,16 @@
   <!-- ═══ HERO ═══ -->
   <section id="hero">
 
-    <!-- Avion koji prelijeće -->
-    <svg class="hero-plane" viewBox="0 0 220 80" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <!-- Fuselage -->
-      <ellipse cx="110" cy="38" rx="90" ry="12" fill="white" opacity="0.9"/>
-      <!-- Nos -->
-      <path d="M196 38 Q218 38 220 40 Q218 42 196 42 Z" fill="white" opacity="0.8"/>
-      <!-- Rep -->
-      <path d="M22 38 Q10 38 6 34 Q10 30 22 32 Z" fill="white" opacity="0.7"/>
-      <!-- Krila -->
-      <path d="M100 38 L130 10 L145 15 L120 40 Z" fill="white" opacity="0.75"/>
-      <path d="M100 38 L130 66 L145 61 L120 36 Z" fill="white" opacity="0.75"/>
+    <!-- Avion -->
+    <svg class="hero-plane" viewBox="0 0 600 200" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <!-- Trup -->
+      <path d="M 370,65 Q 400,65 430,58 Q 455,52 475,65 Q 488,75 492,98 Q 483,108 458,116 Q 440,125 400,125 L 200,125 L 50,108 L 50,95 L 114,75 Q 200,68 370,65 Z" fill="white" opacity="0.2"/>
+      <!-- Krilo -->
+      <path d="M 400,100 L 80,140 L 200,100 Z" fill="white" opacity="0.4"/>
       <!-- Vertikalni stabilizator -->
-      <path d="M30 38 L30 20 L45 30 L45 38 Z" fill="white" opacity="0.6"/>
-      <!-- Horizontalni stabilizatori -->
-      <path d="M35 38 L55 26 L62 30 L45 38 Z" fill="white" opacity="0.6"/>
-      <path d="M35 38 L55 50 L62 46 L45 38 Z" fill="white" opacity="0.6"/>
-      <!-- Motori -->
-      <ellipse cx="125" cy="18" rx="12" ry="5" fill="white" opacity="0.5"/>
-      <ellipse cx="125" cy="58" rx="12" ry="5" fill="white" opacity="0.5"/>
-      <!-- Prozori -->
-      <circle cx="155" cy="36" r="2.5" fill="white" opacity="0.3"/>
-      <circle cx="167" cy="36" r="2.5" fill="white" opacity="0.3"/>
-      <circle cx="179" cy="36" r="2.5" fill="white" opacity="0.3"/>
-      <circle cx="191" cy="36" r="2.5" fill="white" opacity="0.3"/>
+      <path d="M 50,95 L 115,75 L 80,40 L 50,95 Z" fill="white" opacity="0.3"/>
+      <!-- Prozor na čelu -->
+      <path d="M 440,57 Q 470,50 488,83 L 462,83 Q 448,83 440,80 Z" fill="white" opacity="0.4"/>
     </svg>
 
     <!-- Brod pri dnu + valovi -->
@@ -1208,9 +1201,6 @@ linecap="round" opacity="0.85"/>
     <div class="usluge-intro">
       <div class="section-label">Naše usluge</div>
       <h2>Transport koji se<br><em>prilagođava vama</em></h2>
-      <p>
-        Nudimo brodski, vazdušni i željeznički prijevoz robe iz i u skoro sve države na svijetu, s posebnim fokusom na transport iz Kine. Za svakog klijenta pronalazimo rješenje koje odgovara roku isporuke i budžetu. Godinama smo gradili odnose s transporterima na različitim rutama, što nam danas daje pristup zavidljivim cijenama kao i ostalim benefitima koje direktno prenosimo na naše klijente.
-      </p>
     </div>
 
     <div class="usluge-cards">
@@ -1258,6 +1248,68 @@ linecap="round" opacity="0.85"/>
         <div class="card-title" itemprop="name">Željeznički prijevoz</div>
         <p class="card-text" itemprop="description">
           Zlatna sredina između brzine i troška. Ruta Kina–Europa željeznicom brža je od broda, a povoljnija od aviona — idealno za robu standardnih rokova isporuke.
+        </p>
+      </div>
+
+      <div class="usluga-card" itemscope itemtype="https://schema.org/Service">
+        <!-- Ikona kamiona / drumskog prijevoza -->
+        <svg class="card-icon" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#cc1111" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Ikona drumskog prijevoza">
+          <title>Drumski Prijevoz Tereta</title>
+          <rect x="2" y="14" width="26" height="18" rx="2"/>
+          <path d="M28 20 L36 20 L42 28 L42 32 L28 32 Z"/>
+          <circle cx="10" cy="34" r="4"/>
+          <circle cx="34" cy="34" r="4"/>
+          <line x1="2"  y1="26" x2="28" y2="26"/>
+          <line x1="36" y1="24" x2="42" y2="24"/>
+        </svg>
+        <div class="card-title" itemprop="name">Drumski prijevoz</div>
+        <p class="card-text" itemprop="description">
+          Fleksibilno cestovno rješenje za dostavu od vrata do vrata na Balkanu i u Europi. Idealno za hitne isporuke, robu manjih gabarita i destinacije bez direktnih pomorskih ili željezničkih veza.
+        </p>
+      </div>
+
+      <div class="usluga-card" itemscope itemtype="https://schema.org/Service">
+        <!-- Ikona grupnog prijevoza / LCL -->
+        <svg class="card-icon" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#cc1111" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Ikona grupnog prijevoza">
+          <title>Grupni Prijevoz – LCL Konsolidacija Tereta</title>
+          <!-- Kontenjer -->
+          <rect x="4" y="12" width="36" height="22" rx="2"/>
+          <!-- Vertikalne pregrade – tri odjeljka -->
+          <line x1="16" y1="12" x2="16" y2="34"/>
+          <line x1="28" y1="12" x2="28" y2="34"/>
+          <!-- Klijent 1 – kutija lijevo -->
+          <rect x="6"  y="16" width="8" height="8" rx="1"/>
+          <!-- Klijent 2 – kutija sredina -->
+          <rect x="18" y="16" width="8" height="8" rx="1"/>
+          <!-- Klijent 3 – kutija desno -->
+          <rect x="30" y="16" width="8" height="8" rx="1"/>
+          <!-- Točkovi -->
+          <circle cx="12" cy="38" r="3"/>
+          <circle cx="32" cy="38" r="3"/>
+        </svg>
+        <div class="card-title" itemprop="name">Grupni prijevoz</div>
+        <p class="card-text" itemprop="description">
+          Ne trebate cijeli kontenjer? Bez brige — plaćate samo prostor koji vaša roba stvarno zauzima. Konsolidiramo pošiljke više klijenata u jedan kontenjer i tako svima osiguravamo povoljniju cijenu prijevoza.
+        </p>
+      </div>
+
+      <div class="usluga-card" itemscope itemtype="https://schema.org/Service">
+        <!-- Ikona carinska deklaracija i osiguranje -->
+        <svg class="card-icon" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#cc1111" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Ikona carinske deklaracije i osiguranja">
+          <title>Carinska Deklaracija i Osiguranje Tereta</title>
+          <!-- Dokument -->
+          <path d="M10 6 L30 6 L36 12 L36 40 L10 40 Z"/>
+          <path d="M30 6 L30 12 L36 12"/>
+          <!-- Linije teksta -->
+          <line x1="15" y1="20" x2="31" y2="20"/>
+          <line x1="15" y1="26" x2="31" y2="26"/>
+          <!-- Štit / osiguranje -->
+          <path d="M22 29 L17 31 L17 36 Q17 39 22 41 Q27 39 27 36 L27 31 Z"/>
+          <polyline points="19,34 21,36 25,32"/>
+        </svg>
+        <div class="card-title" itemprop="name">Carinska deklaracija i osiguranje</div>
+        <p class="card-text" itemprop="description">
+          Brinemo o svim carinskim formalnostima u vaše ime — od pripreme dokumentacije do podnošenja deklaracije. Uz to nudimo i osiguranje tereta tokom prijevoza, kako bi vaša roba bila zaštićena od polazišta do odredišta.
         </p>
       </div>
 
