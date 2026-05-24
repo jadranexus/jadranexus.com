@@ -860,9 +860,6 @@
 
     @media (max-width: 600px) {
       .usluge-cards { grid-template-columns: 1fr; }
-    }
-
-    @media (max-width: 600px) {
       .btn-menu span.menu-label { display: none; }
       .logo-text { font-size: 18px; }
     }
@@ -932,7 +929,7 @@
       <svg class="hero-ship" viewBox="0 0 900 220" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" overflow="visible">
         <!-- Trup -->
         <path d="M80 160 L820 160 L860 190 L40 190 Z" fill="#36454F" opacity="0.6"/>
-        <path d="M40 190 L860 190 L830 220 L640 900 Z" fill="#e8edf8" opacity="0.5"/>
+        <path d="M40 190 L860 190 L830 220 L640 220 Z" fill="#e8edf8" opacity="0.5"/>
         <!-- Nadgrađe -->
         <rect x="440" y="90" width="380" height="70" rx="6" fill="#e8edf8"/>
         <rect x="440" y="65" width="260" height="35" rx="5" fill="#e8edf8"/>
@@ -1043,8 +1040,7 @@
         <!-- ── ANTENA – (srednji rect y=55–90, slobodan prostor x=620–700) ── -->
         <rect x="683" y="55" width="10" height="10" rx="1" fill="#8090a0"/>
         <line x1="688" y1="55" x2="688" y2="30" stroke="#c0cad8" stroke-width="2" stroke-linecap="round"/>
-        <line x1="680" y1="40" x2="696" y2="40" stroke="#c0cad8" stroke-width="1.5" stroke-
-linecap="round" opacity="0.85"/>
+        <line x1="680" y1="40" x2="696" y2="40" stroke="#c0cad8" stroke-width="1.5" stroke-linecap="round" opacity="0.85"/>
         <line x1="676" y1="45" x2="700" y2="45" stroke="#c0cad8" stroke-width="1.5" stroke-linecap="round" opacity="0.85"/>
         <line x1="672" y1="50" x2="704" y2="50" stroke="#c0cad8" stroke-width="1.5" stroke-linecap="round" opacity="0.85"/>
         <circle cx="688" cy="30" r="2.5" fill="#cc1111"/>
@@ -1492,6 +1488,7 @@ linecap="round" opacity="0.85"/>
 
     document.addEventListener('click', () => closeDropdown());
     document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeDropdown(); });
+    dropdown.addEventListener('click', (e) => e.stopPropagation());
     dropdown.querySelectorAll('a').forEach(link => {
       link.addEventListener('click', () => closeDropdown());
     });
