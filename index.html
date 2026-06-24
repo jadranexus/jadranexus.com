@@ -140,13 +140,12 @@
       --section-pad: clamp(80px, 10vw, 140px);
     }
 
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; overflow-x: hidden; }
 
     body {
       font-family: 'Barlow', sans-serif;
       background: var(--navy);
       color: var(--cream);
-      overflow-x: hidden;
     }
 
     /* ── SR-ONLY (SEO / accessibility) ── */
@@ -569,7 +568,16 @@
     /* ═══════════════════════════════════════
        NAŠE USLUGE
     ═══════════════════════════════════════ */
-    #nase-usluge { background: var(--navy); }
+    #nase-usluge {
+      background: var(--navy);
+      padding-left: 0;
+      padding-right: 0;
+    }
+
+    .usluge-intro {
+      padding-left: clamp(24px, 8vw, 120px);
+      padding-right: clamp(24px, 8vw, 120px);
+    }
 
     .usluge-intro p { max-width: 620px; }
 
@@ -591,6 +599,74 @@
     .usluga-card:hover {
       border-top-color: var(--red);
       background: rgba(15,29,52,0.9);
+    }
+
+    /* ── CAROUSEL ── */
+    .usluge-cards {
+      display: none;
+    }
+
+    .usluge-carousel-wrap {
+      display: block;
+      margin-top: 48px;
+      position: relative;
+    }
+
+    .usluge-carousel {
+      display: flex;
+      overflow: hidden;
+      padding: 0;
+      position: relative;
+      cursor: grab;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    .usluge-carousel:active {
+      cursor: grabbing;
+    }
+
+    .usluge-carousel-inner {
+      display: flex;
+      gap: 16px;
+      transition: transform 0.42s cubic-bezier(0.4, 0, 0.2, 1);
+      will-change: transform;
+    }
+
+    .carousel-card {
+      background: var(--navy2);
+      padding: 40px 36px;
+      border-top: 2px solid transparent;
+      transition: border-top-color 0.3s;
+      flex-shrink: 0;
+    }
+
+    .carousel-card.active {
+      border-top-color: var(--red);
+    }
+
+    /* dots */
+    .carousel-dots {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 32px;
+    }
+
+    .carousel-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: rgba(232, 237, 248, 0.2);
+      border: none;
+      padding: 0;
+      cursor: pointer;
+      transition: background 0.25s, transform 0.25s;
+    }
+
+    .carousel-dot.active {
+      background: var(--red);
+      transform: scale(1.35);
     }
 
     .card-icon {
@@ -852,7 +928,7 @@
        RESPONSIVE
     ═══════════════════════════════════════ */
     @media (max-width: 1100px) {
-      .usluge-cards { grid-template-columns: repeat(2, 1fr); }
+      /* carousel handles all sizes */
     }
 
     @media (max-width: 900px) {
@@ -864,7 +940,6 @@
     }
 
     @media (max-width: 600px) {
-      .usluge-cards { grid-template-columns: 1fr; }
       .btn-menu span.menu-label { display: none; }
       .logo-text { font-size: 18px; }
     }
@@ -1335,6 +1410,93 @@
       </div>
 
     </div>
+
+    <!-- ═══ CAROUSEL (mobile only) ═══ -->
+    <div class="usluge-carousel-wrap" aria-label="Naše usluge" role="region">
+      <div class="usluge-carousel" id="uslugeCarousel">
+        <div class="usluge-carousel-inner" id="carouselInner">
+
+          <!-- Brodski -->
+          <div class="carousel-card" itemscope itemtype="https://schema.org/Service">
+            <svg class="card-icon" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#cc1111" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Ikona brodskog prijevoza">
+              <title>Brodski Prijevoz Tereta – FCL i LCL</title>
+              <path d="M7 28 L22 8 L37 28"/><path d="M4 34 Q11 30 18 34 Q25 38 32 34 Q39 30 42 34"/>
+              <line x1="22" y1="8" x2="22" y2="28"/><line x1="13" y1="28" x2="31" y2="28"/>
+            </svg>
+            <div class="card-title" itemprop="name">Brodski prijevoz</div>
+            <p class="card-text" itemprop="description">Za veće količine robe, brod je najisplativiji izbor. Organizujemo FCL ukrcaje iz glavnih azijskih luka prema jadranskim i mediteranskim pristaništima, odakle roba nastavlja kopnom do vas. Tranzitna vremena kreću se od 40 do 60 dana, ovisno o relaciji i brodaru.</p>
+          </div>
+
+          <!-- Vazdušni -->
+          <div class="carousel-card" itemscope itemtype="https://schema.org/Service">
+            <svg class="card-icon" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#cc1111" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Ikona vazdušnog prijevoza">
+              <title>Vazdušni Prijevoz Tereta – Ekspresna Dostava</title>
+              <path d="M38 14 Q42 18 38 22 L22 22 L10 36 L6 36 L14 22 L4 22 L2 26 L-1 26"/>
+              <path d="M38 14 Q34 10 28 14 L22 22"/><path d="M27 30 L34 30"/>
+            </svg>
+            <div class="card-title" itemprop="name">Vazdušni prijevoz</div>
+            <p class="card-text" itemprop="description">Kada rok ne trpi čekanje, vazdušni transport skraćuje tranzit na 10 do 20 dana. Koristimo direktne i konektovane letove iz Kine, preuzimamo robu od dobavljača i pratimo pošiljku do carinjenja i isporuke na vašu adresu.</p>
+          </div>
+
+          <!-- Željeznički -->
+          <div class="carousel-card" itemscope itemtype="https://schema.org/Service">
+            <svg class="card-icon" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#cc1111" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Ikona željezničkog prijevoza">
+              <title>Željeznički Prijevoz Tereta – Kina Europa</title>
+              <rect x="8" y="10" width="28" height="22" rx="2"/>
+              <line x1="8" y1="20" x2="36" y2="20"/><line x1="22" y1="10" x2="22" y2="32"/>
+              <circle cx="13" cy="36" r="3"/><circle cx="31" cy="36" r="3"/>
+              <line x1="4" y1="36" x2="40" y2="36"/>
+            </svg>
+            <div class="card-title" itemprop="name">Željeznički prijevoz</div>
+            <p class="card-text" itemprop="description">Željeznica na koridoru Kina–Europa nudi tranzit od 18 do 25 dana, po cijeni znatno nižoj od aviona. Odgovara robi srednje hitnosti i voluminoznim pošiljkama kojima brod traje predugo, a avion košta previše.</p>
+          </div>
+
+          <!-- Drumski -->
+          <div class="carousel-card" itemscope itemtype="https://schema.org/Service">
+            <svg class="card-icon" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#cc1111" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Ikona drumskog prijevoza">
+              <title>Drumski Prijevoz Tereta</title>
+              <rect x="2" y="14" width="26" height="18" rx="2"/>
+              <path d="M28 20 L36 20 L42 28 L42 32 L28 32 Z"/>
+              <circle cx="10" cy="34" r="4"/><circle cx="34" cy="34" r="4"/>
+              <line x1="2" y1="26" x2="28" y2="26"/><line x1="36" y1="24" x2="42" y2="24"/>
+            </svg>
+            <div class="card-title" itemprop="name">Drumski prijevoz</div>
+            <p class="card-text" itemprop="description">Za distribuciju unutar Balkana i Europe koristimo cestovni transport s mrežom provjrenih prijevoznika. Prikladna opcija za manje pošiljke, dopunski transport nakon uvoza ili dostave u gradove bez direktnih željezničkih veza.</p>
+          </div>
+
+          <!-- Grupni -->
+          <div class="carousel-card" itemscope itemtype="https://schema.org/Service">
+            <svg class="card-icon" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#cc1111" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Ikona grupnog prijevoza">
+              <title>Grupni Prijevoz – LCL Konsolidacija Tereta</title>
+              <rect x="4" y="12" width="36" height="22" rx="2"/>
+              <line x1="16" y1="12" x2="16" y2="34"/><line x1="28" y1="12" x2="28" y2="34"/>
+              <rect x="6"  y="16" width="8" height="8" rx="1"/>
+              <rect x="18" y="16" width="8" height="8" rx="1"/>
+              <rect x="30" y="16" width="8" height="8" rx="1"/>
+              <circle cx="12" cy="38" r="3"/><circle cx="32" cy="38" r="3"/>
+            </svg>
+            <div class="card-title" itemprop="name">Grupni prijevoz</div>
+            <p class="card-text" itemprop="description">Ako vaša roba ne popunjava cijeli kontejner, LCL konsolidacija znači da plaćate samo kubažu koju zauzimate. Spajamo pošiljke više klijenata u jedan kontejner i raspoređujemo trošak prijevoza srazmjerno veličini svake pošiljke.</p>
+          </div>
+
+          <!-- Carinska -->
+          <div class="carousel-card" itemscope itemtype="https://schema.org/Service">
+            <svg class="card-icon" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#cc1111" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Ikona carinske deklaracije i osiguranja">
+              <title>Carinska Deklaracija i Osiguranje Tereta</title>
+              <path d="M10 6 L30 6 L36 12 L36 40 L10 40 Z"/><path d="M30 6 L30 12 L36 12"/>
+              <line x1="15" y1="15" x2="31" y2="15"/><line x1="15" y1="21" x2="31" y2="21"/>
+              <path d="M22 25 L17 27 L17 32 Q17 35 22 37 Q27 35 27 32 L27 27 Z"/>
+              <polyline points="19,31 21,33 25,29"/>
+            </svg>
+            <div class="card-title" itemprop="name">Carinska deklaracija i osiguranje</div>
+            <p class="card-text" itemprop="description">Pripremamo svu uvoznu dokumentaciju, podnosimo deklaraciju kod carine i pratimo proceduru do konačnog rješenja. Za robu koja putuje na duge relacije nudimo i osiguranje tereta koje pokriva oštećenje, kvar ili gubitak u tranzitu.</p>
+          </div>
+
+        </div>
+      </div>
+      <div class="carousel-dots" id="carouselDots" aria-label="Kartica u fokusu"></div>
+    </div>
+
   </section>
 
   <!-- ═══ KONTAKTIRAJTE NAS ═══ -->
@@ -1611,6 +1773,141 @@
     resize();
     window.addEventListener('resize', () => { resize(); particles.length = 0; });
     requestAnimationFrame(loop);
+  })();
+  </script>
+
+  <!-- ═══ CAROUSEL JS ═══ -->
+  <script>
+  (function () {
+    var wrap   = document.getElementById('uslugeCarousel');
+    var inner  = document.getElementById('carouselInner');
+    var dotsEl = document.getElementById('carouselDots');
+    if (!wrap || !inner || !dotsEl) return;
+
+    var GAP  = 16;
+    var PEEK = 0.10; // 10% each side
+
+    var origCards = Array.from(inner.querySelectorAll('.carousel-card'));
+    var N = origCards.length;
+
+    // clones
+    var cloneLast  = origCards[N-1].cloneNode(true); cloneLast.classList.add('carousel-clone');
+    var cloneFirst = origCards[0].cloneNode(true);   cloneFirst.classList.add('carousel-clone');
+    inner.insertBefore(cloneLast, inner.firstChild);
+    inner.appendChild(cloneFirst);
+
+    var slot  = 1;
+    var cardW = 0;
+
+    function vw() {
+      // Use wrap's actual rendered width, not window.innerWidth
+      // (avoids overflow-x: hidden issues)
+      return wrap.getBoundingClientRect().width;
+    }
+
+    function layout() {
+      var w = vw();
+      cardW = w * (1 - PEEK * 2) - GAP;
+      var all = inner.querySelectorAll('.carousel-card');
+      for (var i = 0; i < all.length; i++) {
+        all[i].style.cssText += 'width:' + cardW + 'px;min-width:' + cardW + 'px;flex-shrink:0;';
+      }
+    }
+
+    function pos(s) {
+      return s * (cardW + GAP) - vw() * PEEK;
+    }
+
+    function jump(s, animate) {
+      inner.style.transition = animate ? 'transform 0.38s cubic-bezier(0.4,0,0.2,1)' : 'none';
+      inner.style.transform  = 'translateX(' + (-pos(s)) + 'px)';
+      slot = s;
+      dots();
+    }
+
+    function dots() {
+      var real = ((slot - 1) % N + N) % N;
+      var ds = dotsEl.querySelectorAll('.carousel-dot');
+      var cs = inner.querySelectorAll('.carousel-card:not(.carousel-clone)');
+      for (var i = 0; i < ds.length; i++) {
+        ds[i].classList.toggle('active', i === real);
+      }
+      for (var i = 0; i < cs.length; i++) {
+        cs[i].classList.toggle('active', i === real);
+      }
+    }
+
+    inner.addEventListener('transitionend', function() {
+      if (slot <= 0)   { jump(N, false); }
+      if (slot >= N+1) { jump(1, false); }
+    });
+
+    // Build dots
+    for (var i = 0; i < N; i++) {
+      (function(idx) {
+        var btn = document.createElement('button');
+        btn.className = 'carousel-dot';
+        btn.setAttribute('aria-label', 'Kartica ' + (idx+1));
+        btn.addEventListener('click', function() { jump(idx+1, true); });
+        dotsEl.appendChild(btn);
+      })(i);
+    }
+
+    // ── Drag / swipe ──
+    var startX = 0, startPos = 0, dragging = false;
+
+    function onStart(x) {
+      dragging  = true;
+      startX    = x;
+      startPos  = pos(slot);
+      inner.style.transition = 'none';
+    }
+
+    function onMove(x) {
+      if (!dragging) return;
+      var dx = x - startX;
+      inner.style.transform = 'translateX(' + (-(startPos - dx)) + 'px)';
+    }
+
+    function onEnd(x) {
+      if (!dragging) return;
+      dragging = false;
+      var dx = x - startX;
+      if      (dx < -(cardW * 0.15)) jump(slot + 1, true);
+      else if (dx >  (cardW * 0.15)) jump(slot - 1, true);
+      else                            jump(slot,     true);
+    }
+
+    // Touch – attached to document so overlay issues don't matter
+    document.addEventListener('touchstart', function(e) {
+      if (!wrap.contains(e.target)) return;
+      onStart(e.touches[0].clientX);
+    }, { passive: true });
+
+    document.addEventListener('touchmove', function(e) {
+      onMove(e.touches[0].clientX);
+    }, { passive: true });
+
+    document.addEventListener('touchend', function(e) {
+      onEnd(e.changedTouches[0].clientX);
+    }, { passive: true });
+
+    // Mouse
+    wrap.addEventListener('mousedown', function(e) {
+      onStart(e.clientX);
+      e.preventDefault();
+    });
+    document.addEventListener('mousemove', function(e) { onMove(e.clientX); });
+    document.addEventListener('mouseup',   function(e) { onEnd(e.clientX); });
+
+    // Init
+    layout();
+    jump(1, false);
+
+    window.addEventListener('resize', function() {
+      layout();
+      jump(slot, false);
+    }, { passive: true });
   })();
   </script>
 
