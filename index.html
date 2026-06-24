@@ -582,7 +582,7 @@
     .usluge-intro p { max-width: 620px; }
 
     .usluge-cards {
-      display: grid;
+      display: none;
       grid-template-columns: repeat(3, 1fr);
       gap: 2px;
       margin-top: 60px;
@@ -599,11 +599,6 @@
     .usluga-card:hover {
       border-top-color: var(--red);
       background: rgba(15,29,52,0.9);
-    }
-
-    /* ── CAROUSEL ── */
-    .usluge-cards {
-      display: none;
     }
 
     .usluge-carousel-wrap {
@@ -1820,29 +1815,47 @@
     if (!wrap || !inner || !dotsEl) return;
 
     var GAP  = 16;
-    var PEEK = 0.10; // 10% each side
 
     var origCards = Array.from(inner.querySelectorAll('.carousel-card'));
     var N = origCards.length;
 
-    // clones
-    var cloneLast  = origCards[N-1].cloneNode(true); cloneLast.classList.add('carousel-clone');
-    var cloneFirst = origCards[0].cloneNode(true);   cloneFirst.classList.add('carousel-clone');
-    inner.insertBefore(cloneLast, inner.firstChild);
-    inner.appendChild(cloneFirst);
+    // Kloniramo 3 kartice na svaku stranu (koliko ih max prikazujemo na desktop-u)
+    // Na kraju dodajemo prve 3, na početak zadnje 3 (obrnutim redoslijedom)
+    var CLONE_COUNT = 3;
+    for (var ci = 0; ci < CLONE_COUNT; ci++) {
+      var cEnd = origCards[ci].cloneNode(true);
+      cEnd.classList.add('carousel-clone');
+      inner.appendChild(cEnd);
+    }
+    for (var ci = CLONE_COUNT - 1; ci >= 0; ci--) {
+      var cStart = origCards[N - CLONE_COUNT + ci].cloneNode(true);
+      cStart.classList.add('carousel-clone');
+      inner.insertBefore(cStart, inner.firstChild);
+    }
 
-    var slot  = 1;
+    var slot  = CLONE_COUNT;
     var cardW = 0;
 
+    function visibleCards() {
+      // Na desktop-u (>= 900px) prikazujemo 3 kartice, na mobilnom 1
+      return wrap.getBoundingClientRect().width >= 900 ? 3 : 1;
+    }
+
+    function peek() {
+      // Na mobilnom malo peekamo sljedeću karticu, na desktopu ne trebamo
+      return visibleCards() === 1 ? 0.08 : 0;
+    }
+
     function vw() {
-      // Use wrap's actual rendered width, not window.innerWidth
-      // (avoids overflow-x: hidden issues)
       return wrap.getBoundingClientRect().width;
     }
 
     function layout() {
-      var w = vw();
-      cardW = w * (1 - PEEK * 2) - GAP;
+      var w    = vw();
+      var cols = visibleCards();
+      var pk   = peek();
+      // Širina jedne kartice: ukupna širina minus peek s jedne strane, minus razmaci između kartica
+      cardW = (w * (1 - pk) - GAP * cols) / cols;
       var all = inner.querySelectorAll('.carousel-card');
       for (var i = 0; i < all.length; i++) {
         all[i].style.cssText += 'width:' + cardW + 'px;min-width:' + cardW + 'px;flex-shrink:0;';
@@ -1850,7 +1863,8 @@
     }
 
     function pos(s) {
-      return s * (cardW + GAP) - vw() * PEEK;
+      var pk = peek();
+      return s * (cardW + GAP) - vw() * pk;
     }
 
     function jump(s, animate) {
@@ -1861,7 +1875,7 @@
     }
 
     function dots() {
-      var real = ((slot - 1) % N + N) % N;
+      var real = ((slot - CLONE_COUNT) % N + N) % N;
       var ds = dotsEl.querySelectorAll('.carousel-dot');
       var cs = inner.querySelectorAll('.carousel-card:not(.carousel-clone)');
       for (var i = 0; i < ds.length; i++) {
@@ -1873,8 +1887,8 @@
     }
 
     inner.addEventListener('transitionend', function() {
-      if (slot <= 0)   { jump(N, false); }
-      if (slot >= N+1) { jump(1, false); }
+      if (slot <= CLONE_COUNT - 1) { jump(slot + N, false); }
+      if (slot >= N + CLONE_COUNT) { jump(slot - N, false); }
     });
 
     // Build dots
@@ -1955,7 +1969,7 @@
 
     // Init
     layout();
-    jump(1, false);
+    jump(CLONE_COUNT, false);
 
     window.addEventListener('resize', function() {
       layout();
