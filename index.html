@@ -124,7 +124,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Barlow:wght@300;400;500;600&family=Barlow+Condensed:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Barlow:wght@300;400;500;600&family=Barlow+Condensed:wght@400;600;700&family=Lora:ital,wght@0,400;1,400&display=swap" rel="stylesheet" />
 
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -640,6 +640,7 @@
       border-top: 2px solid transparent;
       transition: border-top-color 0.3s;
       flex-shrink: 0;
+      border-radius: 12px;
     }
 
     .carousel-card.active {
@@ -661,7 +662,7 @@
       background: rgba(232, 237, 248, 0.2);
       border: none;
       padding: 0;
-      cursor: pointer;
+      cursor: default;
       transition: background 0.25s, transform 0.25s;
     }
 
@@ -670,11 +671,18 @@
       transform: scale(1.35);
     }
 
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
     .card-icon {
       width: 44px;
       height: 44px;
-      margin-bottom: 24px;
-      opacity: 0.8;
+      flex-shrink: 0;
+      opacity: 0.85;
     }
 
     .card-title {
@@ -684,12 +692,14 @@
       letter-spacing: 0.06em;
       text-transform: uppercase;
       color: var(--cream);
-      margin-bottom: 14px;
+      line-height: 1.2;
     }
 
     .card-text {
+      font-family: 'Lora', serif;
       font-size: 14px;
-      line-height: 1.75;
+      font-style: italic;
+      line-height: 1.8;
       color: var(--muted);
       max-width: none;
     }
@@ -1304,6 +1314,7 @@
 
       <div class="usluga-card" itemscope itemtype="https://schema.org/Service">
         <!-- Ikona broda -->
+        <div class="card-header">
         <svg class="card-icon" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#cc1111" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Ikona brodskog prijevoza">
           <title>Brodski Prijevoz Tereta – FCL i LCL</title>
           <path d="M7 28 L22 8 L37 28"/>
@@ -1312,6 +1323,7 @@
           <line x1="13" y1="28" x2="31" y2="28"/>
         </svg>
         <div class="card-title" itemprop="name">Brodski prijevoz</div>
+        </div>
         <p class="card-text" itemprop="description">
           Za veće količine robe, brod je najisplativiji izbor. Organizujemo FCL ukrcaje iz glavnih azijskih luka prema jadranskim i mediteranskim pristaništima, odakle roba nastavlja kopnom do vas. Tranzitna vremena kreću se od 40 do 60 dana, ovisno o relaciji i brodaru.
         </p>
@@ -1319,6 +1331,7 @@
 
       <div class="usluga-card" itemscope itemtype="https://schema.org/Service">
         <!-- Ikona aviona -->
+        <div class="card-header">
         <svg class="card-icon" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#cc1111" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Ikona vazdušnog prijevoza">
           <title>Vazdušni Prijevoz Tereta – Ekspresna Dostava</title>
           <path d="M38 14 Q42 18 38 22 L22 22 L10 36 L6 36 L14 22 L4 22 L2 26 L-1 26"/>
@@ -1326,6 +1339,7 @@
           <path d="M27 30 L34 30"/>
         </svg>
         <div class="card-title" itemprop="name">Vazdušni prijevoz</div>
+        </div>
         <p class="card-text" itemprop="description">
           Kada rok ne trpi čekanje, vazdušni transport skraćuje tranzit na 10 do 20 dana. Koristimo direktne i konektovane letove iz Kine, preuzimamo robu od dobavljača i pratimo pošiljku do carinjenja i isporuke na vašu adresu.
         </p>
@@ -1333,6 +1347,7 @@
 
       <div class="usluga-card" itemscope itemtype="https://schema.org/Service">
         <!-- Ikona voza -->
+        <div class="card-header">
         <svg class="card-icon" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#cc1111" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Ikona željezničkog prijevoza">
           <title>Željeznički Prijevoz Tereta – Kina Europa</title>
           <rect x="8" y="10" width="28" height="22" rx="2"/>
@@ -1343,6 +1358,7 @@
           <line x1="4" y1="36" x2="40" y2="36"/>
         </svg>
         <div class="card-title" itemprop="name">Željeznički prijevoz</div>
+        </div>
         <p class="card-text" itemprop="description">
           Željeznica na koridoru Kina–Europa nudi tranzit od 18 do 25 dana, po cijeni znatno nižoj od aviona. Odgovara robi srednje hitnosti i voluminoznim pošiljkama kojima brod traje predugo, a avion košta previše.
         </p>
@@ -1350,6 +1366,7 @@
 
       <div class="usluga-card" itemscope itemtype="https://schema.org/Service">
         <!-- Ikona kamiona / drumskog prijevoza -->
+        <div class="card-header">
         <svg class="card-icon" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#cc1111" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Ikona drumskog prijevoza">
           <title>Drumski Prijevoz Tereta</title>
           <rect x="2" y="14" width="26" height="18" rx="2"/>
@@ -1360,6 +1377,7 @@
           <line x1="36" y1="24" x2="42" y2="24"/>
         </svg>
         <div class="card-title" itemprop="name">Drumski prijevoz</div>
+        </div>
         <p class="card-text" itemprop="description">
           Za distribuciju unutar Balkana i Europe koristimo cestovni transport s mrežom provjrenih prijevoznika. Prikladna opcija za manje pošiljke, dopunski transport nakon uvoza ili dostave u gradove bez direktnih željezničkih veza.
         </p>
@@ -1367,6 +1385,7 @@
 
       <div class="usluga-card" itemscope itemtype="https://schema.org/Service">
         <!-- Ikona grupnog prijevoza / LCL -->
+        <div class="card-header">
         <svg class="card-icon" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#cc1111" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Ikona grupnog prijevoza">
           <title>Grupni Prijevoz – LCL Konsolidacija Tereta</title>
           <!-- Kontenjer -->
@@ -1385,6 +1404,7 @@
           <circle cx="32" cy="38" r="3"/>
         </svg>
         <div class="card-title" itemprop="name">Grupni prijevoz</div>
+        </div>
         <p class="card-text" itemprop="description">
           Ako vaša roba ne popunjava cijeli kontejner, LCL konsolidacija znači da plaćate samo kubažu koju zauzimate. Spajamo pošiljke više klijenata u jedan kontejner i raspoređujemo trošak prijevoza srazmjerno veličini svake pošiljke.
         </p>
@@ -1392,6 +1412,7 @@
 
       <div class="usluga-card" itemscope itemtype="https://schema.org/Service">
         <!-- Ikona carinska deklaracija i osiguranje -->
+        <div class="card-header">
         <svg class="card-icon" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#cc1111" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Ikona carinske deklaracije i osiguranja">
           <title>Carinska Deklaracija i Osiguranje Tereta</title>
           <!-- Dokument -->
@@ -1405,6 +1426,7 @@
           <polyline points="19,31 21,33 25,29"/>
         </svg>
         <div class="card-title" itemprop="name">Carinska deklaracija i osiguranje</div>
+        </div>
         <p class="card-text" itemprop="description">
           Pripremamo svu uvoznu dokumentaciju, podnosimo deklaraciju kod carine i pratimo proceduru do konačnog rješenja. Za robu koja putuje na duge relacije nudimo i osiguranje tereta koje pokriva oštećenje, kvar ili gubitak u tranzitu.
         </p>
@@ -1419,28 +1441,33 @@
 
           <!-- Brodski -->
           <div class="carousel-card" itemscope itemtype="https://schema.org/Service">
+            <div class="card-header">
             <svg class="card-icon" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#cc1111" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Ikona brodskog prijevoza">
               <title>Brodski Prijevoz Tereta – FCL i LCL</title>
               <path d="M7 28 L22 8 L37 28"/><path d="M4 34 Q11 30 18 34 Q25 38 32 34 Q39 30 42 34"/>
               <line x1="22" y1="8" x2="22" y2="28"/><line x1="13" y1="28" x2="31" y2="28"/>
             </svg>
             <div class="card-title" itemprop="name">Brodski prijevoz</div>
+            </div>
             <p class="card-text" itemprop="description">Za veće količine robe, brod je najisplativiji izbor. Organizujemo FCL ukrcaje iz glavnih azijskih luka prema jadranskim i mediteranskim pristaništima, odakle roba nastavlja kopnom do vas. Tranzitna vremena kreću se od 40 do 60 dana, ovisno o relaciji i brodaru.</p>
           </div>
 
           <!-- Vazdušni -->
           <div class="carousel-card" itemscope itemtype="https://schema.org/Service">
+            <div class="card-header">
             <svg class="card-icon" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#cc1111" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Ikona vazdušnog prijevoza">
               <title>Vazdušni Prijevoz Tereta – Ekspresna Dostava</title>
               <path d="M38 14 Q42 18 38 22 L22 22 L10 36 L6 36 L14 22 L4 22 L2 26 L-1 26"/>
               <path d="M38 14 Q34 10 28 14 L22 22"/><path d="M27 30 L34 30"/>
             </svg>
             <div class="card-title" itemprop="name">Vazdušni prijevoz</div>
+            </div>
             <p class="card-text" itemprop="description">Kada rok ne trpi čekanje, vazdušni transport skraćuje tranzit na 10 do 20 dana. Koristimo direktne i konektovane letove iz Kine, preuzimamo robu od dobavljača i pratimo pošiljku do carinjenja i isporuke na vašu adresu.</p>
           </div>
 
           <!-- Željeznički -->
           <div class="carousel-card" itemscope itemtype="https://schema.org/Service">
+            <div class="card-header">
             <svg class="card-icon" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#cc1111" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Ikona željezničkog prijevoza">
               <title>Željeznički Prijevoz Tereta – Kina Europa</title>
               <rect x="8" y="10" width="28" height="22" rx="2"/>
@@ -1449,11 +1476,13 @@
               <line x1="4" y1="36" x2="40" y2="36"/>
             </svg>
             <div class="card-title" itemprop="name">Željeznički prijevoz</div>
+            </div>
             <p class="card-text" itemprop="description">Željeznica na koridoru Kina–Europa nudi tranzit od 18 do 25 dana, po cijeni znatno nižoj od aviona. Odgovara robi srednje hitnosti i voluminoznim pošiljkama kojima brod traje predugo, a avion košta previše.</p>
           </div>
 
           <!-- Drumski -->
           <div class="carousel-card" itemscope itemtype="https://schema.org/Service">
+            <div class="card-header">
             <svg class="card-icon" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#cc1111" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Ikona drumskog prijevoza">
               <title>Drumski Prijevoz Tereta</title>
               <rect x="2" y="14" width="26" height="18" rx="2"/>
@@ -1462,11 +1491,13 @@
               <line x1="2" y1="26" x2="28" y2="26"/><line x1="36" y1="24" x2="42" y2="24"/>
             </svg>
             <div class="card-title" itemprop="name">Drumski prijevoz</div>
+            </div>
             <p class="card-text" itemprop="description">Za distribuciju unutar Balkana i Europe koristimo cestovni transport s mrežom provjrenih prijevoznika. Prikladna opcija za manje pošiljke, dopunski transport nakon uvoza ili dostave u gradove bez direktnih željezničkih veza.</p>
           </div>
 
           <!-- Grupni -->
           <div class="carousel-card" itemscope itemtype="https://schema.org/Service">
+            <div class="card-header">
             <svg class="card-icon" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#cc1111" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Ikona grupnog prijevoza">
               <title>Grupni Prijevoz – LCL Konsolidacija Tereta</title>
               <rect x="4" y="12" width="36" height="22" rx="2"/>
@@ -1477,11 +1508,13 @@
               <circle cx="12" cy="38" r="3"/><circle cx="32" cy="38" r="3"/>
             </svg>
             <div class="card-title" itemprop="name">Grupni prijevoz</div>
+            </div>
             <p class="card-text" itemprop="description">Ako vaša roba ne popunjava cijeli kontejner, LCL konsolidacija znači da plaćate samo kubažu koju zauzimate. Spajamo pošiljke više klijenata u jedan kontejner i raspoređujemo trošak prijevoza srazmjerno veličini svake pošiljke.</p>
           </div>
 
           <!-- Carinska -->
           <div class="carousel-card" itemscope itemtype="https://schema.org/Service">
+            <div class="card-header">
             <svg class="card-icon" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#cc1111" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Ikona carinske deklaracije i osiguranja">
               <title>Carinska Deklaracija i Osiguranje Tereta</title>
               <path d="M10 6 L30 6 L36 12 L36 40 L10 40 Z"/><path d="M30 6 L30 12 L36 12"/>
@@ -1490,6 +1523,7 @@
               <polyline points="19,31 21,33 25,29"/>
             </svg>
             <div class="card-title" itemprop="name">Carinska deklaracija i osiguranje</div>
+            </div>
             <p class="card-text" itemprop="description">Pripremamo svu uvoznu dokumentaciju, podnosimo deklaraciju kod carine i pratimo proceduru do konačnog rješenja. Za robu koja putuje na duge relacije nudimo i osiguranje tereta koje pokriva oštećenje, kvar ili gubitak u tranzitu.</p>
           </div>
 
@@ -1849,7 +1883,7 @@
         var btn = document.createElement('button');
         btn.className = 'carousel-dot';
         btn.setAttribute('aria-label', 'Kartica ' + (idx+1));
-        btn.addEventListener('click', function() { jump(idx+1, true); });
+        btn.addEventListener('click', function() { /* dots are indicators only */ });
         dotsEl.appendChild(btn);
       })(i);
     }
