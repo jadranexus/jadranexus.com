@@ -950,6 +950,54 @@
       .logo-text { font-size: 18px; }
     }
 
+    @media (max-width: 520px) {
+      .kontakt-row-inline {
+        gap: 16px !important;
+        flex-wrap: nowrap !important;
+      }
+      .kontakt-row-inline .kontakt-item {
+        gap: 10px;
+        flex: 1 1 0;
+        min-width: 0;
+      }
+
+      /* Email + Telefon – ikone i font */
+      .kontakt-row-inline .kontakt-icon-wrap {
+        width: 30px;
+        height: 30px;
+        flex-shrink: 0;
+      }
+      .kontakt-row-inline .kontakt-icon-wrap svg {
+        width: 14px;
+        height: 14px;
+      }
+      .kontakt-row-inline .kontakt-item-label {
+        font-size: 11px;
+        letter-spacing: 0.12em;
+      }
+      .kontakt-row-inline .kontakt-item-value {
+        font-size: 14px;
+      }
+
+      /* Adresa – iste veličine kao email/telefon */
+      .kontakt-details > .kontakt-item .kontakt-icon-wrap {
+        width: 30px;
+        height: 30px;
+        flex-shrink: 0;
+      }
+      .kontakt-details > .kontakt-item .kontakt-icon-wrap svg {
+        width: 14px;
+        height: 14px;
+      }
+      .kontakt-details > .kontakt-item .kontakt-item-label {
+        font-size: 11px;
+        letter-spacing: 0.12em;
+      }
+      .kontakt-details > .kontakt-item .kontakt-item-value {
+        font-size: 14px;
+      }
+    }
+
     /* ═══════════════════════════════════════
        PREFERS REDUCED MOTION
     ═══════════════════════════════════════ */
@@ -1537,7 +1585,7 @@
         <div class="section-label">Kontaktirajte nas</div>
         <h2>Pošaljite nam<br><em>upit već danas</em></h2>
         <div class="kontakt-details">
-          <div style="display:flex;gap:32px;flex-wrap:wrap;">
+          <div class="kontakt-row-inline" style="display:flex;gap:32px;flex-wrap:wrap;">
 
             <div class="kontakt-item">
               <div class="kontakt-icon-wrap">
