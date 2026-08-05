@@ -1,36 +1,6 @@
 <!DOCTYPE html>
 <html lang="bs">
 <head>
-	
-	<!-- Google tag (gtag.js) event - delayed navigation helper -->
-<script>
-  // Helper function to delay opening a URL until a gtag event is sent.
-  // Call it in response to an action that should navigate to a URL.
-  function gtagSendEvent(url) {
-    var callback = function () {
-      if (typeof url === 'string') {
-        window.location = url;
-      }
-    };
-    gtag('event', 'ads_conversion_Request_quote_1', {
-      'event_callback': callback,
-      'event_timeout': 2000,
-      // <event_parameters>
-    });
-    return false;
-  }
-</script>
-
-	<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18257774748"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'AW-18257774748');
-</script>
-	
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
@@ -139,6 +109,15 @@
         "provider": {"@id": "https://jadranexus.com/#organization"},
         "description": "Ekonomičan željezničan transport na koridoru Kina–Europa. Brži od broda, povoljniji od aviona.",
         "areaServed": {"@type": "Place", "name": "Svjetski"}
+      },
+      {
+        "@type": "Service",
+        "@id": "https://jadranexus.com/#nabavka-proizvoda",
+        "name": "Nabavka Proizvoda iz Kine",
+        "serviceType": "Product sourcing / Nabavka robe",
+        "provider": {"@id": "https://jadranexus.com/#organization"},
+        "description": "Pronalaženje pouzdanih dobavljača u Kini, pregovaranje cijena i provjera kvaliteta robe prije otpreme.",
+        "areaServed": {"@type": "Place", "name": "Kina"}
       },
       {
         "@type": "WebSite",
@@ -1438,6 +1417,24 @@
       </div>
 
       <div class="usluga-card" itemscope itemtype="https://schema.org/Service">
+        <!-- Ikona nabavke proizvoda -->
+        <div class="card-header">
+        <svg class="card-icon" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#cc1111" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Ikona nabavke proizvoda">
+          <title>Nabavka Proizvoda iz Kine</title>
+          <rect x="4" y="18" width="20" height="18" rx="2"/>
+          <path d="M4 24 L24 24"/>
+          <path d="M14 18 L14 24"/>
+          <circle cx="30" cy="16" r="9"/>
+          <line x1="36.5" y1="22.5" x2="42" y2="28"/>
+        </svg>
+        <div class="card-title" itemprop="name">Nabavka proizvoda</div>
+        </div>
+        <p class="card-text" itemprop="description">
+          Pronalazimo pouzdane dobavljače u Kini, pregovaramo cijene i provjeravamo kvalitet robe prije otpreme. Idealno za klijente koji tek počinju uvoz ili žele proširiti asortiman bez rizika saradnje s nepoznatim fabrikama.
+        </p>
+      </div>
+
+      <div class="usluga-card" itemscope itemtype="https://schema.org/Service">
         <!-- Ikona kamiona / drumskog prijevoza -->
         <div class="card-header">
         <svg class="card-icon" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#cc1111" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Ikona drumskog prijevoza">
@@ -1551,6 +1548,21 @@
             <div class="card-title" itemprop="name">Željeznički prijevoz</div>
             </div>
             <p class="card-text" itemprop="description">Željeznica na koridoru Kina–Europa nudi tranzit od 18 do 25 dana, po cijeni znatno nižoj od aviona. Odgovara robi srednje hitnosti i voluminoznim pošiljkama kojima brod traje predugo, a avion košta previše.</p>
+          </div>
+
+          <!-- Nabavka proizvoda -->
+          <div class="carousel-card" itemscope itemtype="https://schema.org/Service">
+            <div class="card-header">
+            <svg class="card-icon" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#cc1111" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Ikona nabavke proizvoda">
+              <title>Nabavka Proizvoda iz Kine</title>
+              <rect x="4" y="18" width="20" height="18" rx="2"/>
+              <path d="M4 24 L24 24"/><path d="M14 18 L14 24"/>
+              <circle cx="30" cy="16" r="9"/>
+              <line x1="36.5" y1="22.5" x2="42" y2="28"/>
+            </svg>
+            <div class="card-title" itemprop="name">Nabavka proizvoda</div>
+            </div>
+            <p class="card-text" itemprop="description">Pronalazimo pouzdane dobavljače u Kini, pregovaramo cijene i provjeravamo kvalitet robe prije otpreme. Idealno za klijente koji tek počinju uvoz ili žele proširiti asortiman bez rizika saradnje s nepoznatim fabrikama.</p>
           </div>
 
           <!-- Drumski -->
